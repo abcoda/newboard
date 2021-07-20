@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+      position: relative;
+      background-color: #67768c
+    }
+
+    #options {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      background-color: #bccbe2;
+      height: 6%;
+      width: 100%;
+      border-bottom: 0.3vw double white;
+      font-size: 1vw;
+    }
+
+    .main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: calc(94% - 20px);
+    }
+
+    #board {
+      background-color: white;
+      height: 1500px;
+      width: 2000px;
+      touch-action: none;
+      /* border:2px solid blue; */
+    }
+
+    #minimap-holder {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 20vw;
+      height: 16vw;
+      border: 1px double #3f3d5b;
+      opacity: 0.99;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    #minimap {
+      /* width:100%; */
+      /* height:100%; */
+      /* border: 2px solid red; */
+    }
+
+    .board-container {
+      border: 2px solid #3f3d5b;
+      border-radius: 4px;
+      background-color: white;
+      overflow: scroll;
+      scrollbar-width: thin;
+      max-width: 100%;
+      max-height: 100%;
+      position: relative;
+    }
+
+    *::-webkit-scrollbar {
+      width: 0.7vw;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: #eee;
+      border-radius: 20px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 20px;
+      /* border: 3px solid orange; */
+    }
+  </style>
+  <script src="../static/index.js"></script>
+</head>
+
+<body>
+  <div id="options" class="container-fluid">
+    <select id="color-picker">
+      <option value="black">Black</option>
+      <option value="red">Red</option>
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+    </select>
+    <select id="thickness-picker">
+      <option value=1 selected>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+      <option value=5>5</option>
+      <option value=6>6</option>
+      <option value=7>7</option>
+      <option value=8>8</option>
+      <option value=9>9</option>
+      <option value=10>10</option>
+    </select>
+    <button id="erase">Erase</button>
+  </div>
+  <div class="main">
+    <div class="board-container">
+      <svg width="2000" height="1500" id="board" viewBox="0 0 2000 1500"></svg>
+    </div>
+    <div id="minimap-holder">
+      <svg width="200" height="150" viewBox="0 0 2000 1500" xmlns:xlink="http://www.w3.org/1999/xlink" id="minimap">
+        <use xlink:href="#board" />
+      </svg>
+    </div>
+  </div>
+</body>
+
+</html>
